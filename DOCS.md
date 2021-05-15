@@ -22,10 +22,6 @@ on the same form multiple times - it won&#39;t touch fields that are already &qu
 <dt><a href="#prepareSelects">prepareSelects(formEl)</a></dt>
 <dd><p>Wraps all <code>&lt;select&gt;</code>&#39;s in <code>.form-select</code>. Supports <code>data-label</code>.</p>
 </dd>
-<dt><a href="#prepareGenreSelects">prepareGenreSelects(formEl)</a></dt>
-<dd><p>All <code>&lt;select&gt;</code>&#39;s with the name <code>genres</code> will be populated with all genres from the database.
-Supports the attrs <code>data-selected</code>.</p>
-</dd>
 <dt><a href="#prepareCheckboxes">prepareCheckboxes(formEl)</a></dt>
 <dd><p>Wraps all <code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#39;s in <code>.toggle-switch</code>&#39;s. Supports <code>data-label</code> and <code>data-align</code>.</p>
 </dd>
@@ -101,18 +97,6 @@ All inputs remain exposed and focusable in their semantic document position.
 
 ## prepareSelects(formEl)
 Wraps all `<select>`'s in `.form-select`. Supports `data-label`.
-
-**Kind**: global function  
-
-| Param | Type | Description |
-| --- | --- | --- |
-| formEl | <code>Element</code> | Form Element to find fields in. |
-
-<a name="prepareGenreSelects"></a>
-
-## prepareGenreSelects(formEl)
-All `<select>`'s with the name `genres` will be populated with all genres from the database.
-Supports the attrs `data-selected`.
 
 **Kind**: global function  
 

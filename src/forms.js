@@ -5,7 +5,7 @@
  */
 import __ from '../../double-u/index.js'
 import i18n from '../../i18n.js/index.js'
-import Query from '../../sqleary.js/index.js'
+//import Query from '../../sqleary.js/index.js'
 
 const validationErrorClassName = 'validation-error'
 
@@ -28,10 +28,10 @@ const validationErrorClassName = 'validation-error'
  * 
  * All inputs remain exposed and focusable in their semantic document position.
  */
-export async function prepare(formEl) {
+export function prepare(formEl) {
   // child fields
   prepareSelects(formEl)
-  await prepareGenreSelects(formEl)
+  //await prepareGenreSelects(formEl)
   prepareCheckboxes(formEl)
   prepareFilePickers(formEl)
   prepareNumberInputs(formEl)
@@ -75,41 +75,41 @@ function prepareSelects(formEl) {
  * 
  * @param {Element} formEl - Form Element to find fields in.
  */
-function prepareGenreSelects(formEl) {
-  return new Promise(async (resolve, reject) => {
+// function prepareGenreSelects(formEl) {
+//   return new Promise(async (resolve, reject) => {
 
-    let selects = __(formEl).find('select.genres')
+//     let selects = __(formEl).find('select.genres')
 
-    if (!selects.els.length) {
-      return resolve()
-    }
+//     if (!selects.els.length) {
+//       return resolve()
+//     }
   
-    // we have at least one genres select, get all genres
-    let genresQuery = await new Query({
-      'table': 'music_genres',
-      'itemsPerPage': -1
-    })
+//     // we have at least one genres select, get all genres
+//     let genresQuery = await new Query({
+//       'table': 'music_genres',
+//       'itemsPerPage': -1
+//     })
   
-    if (!genresQuery.results.length) {
-      return resolve()
-    }
+//     if (!genresQuery.results.length) {
+//       return resolve()
+//     }
   
-    // add all genres to each genres select.
-    // using a for-loop instead of .each() simplifies resolving
-    for (let el of selects.els) {
-      let select = __(el)
-      let selected = select.attr('data-selected') ? select.attr('data-selected') : []
+//     // add all genres to each genres select.
+//     // using a for-loop instead of .each() simplifies resolving
+//     for (let el of selects.els) {
+//       let select = __(el)
+//       let selected = select.attr('data-selected') ? select.attr('data-selected') : []
   
-      for (let genre of genresQuery.results) {
-        let selectedAttr = selected.includes(genre.id) ? 'selected="selected"' : ''
-        select.appendHtml(/*html*/`<option value="${genre.id}" ${selectedAttr}>${genre.genre_name}</option>`)
-      }
-    }
+//       for (let genre of genresQuery.results) {
+//         let selectedAttr = selected.includes(genre.id) ? 'selected="selected"' : ''
+//         select.appendHtml(/*html*/`<option value="${genre.id}" ${selectedAttr}>${genre.genre_name}</option>`)
+//       }
+//     }
 
-    resolve()
+//     resolve()
 
-  })
-}
+//   })
+// }
 
 /**
  * Wraps all `<input type="checkbox">`'s in `.toggle-switch`'s. Supports `data-label` and `data-align`.

@@ -3,8 +3,8 @@
 *To see cardinal-forms in action, check out the
 [Cardinal apps](https://cardinalapps.xyz).* 
 
-cardinal-forms is a dependency-free ES6 JavaScript package for working with the
-forms in the Cardinal apps.
+cardinal-forms is an ES6 JavaScript package for working with the forms in the
+Cardinal apps.
 
 It takes basic HTML and turns it into complex form markup. It is designed to
 work with all types of basic form inputs, and has special methods for working
@@ -16,6 +16,10 @@ It also provides functions for form validation and error handing.
 
 A reference of all public cardinal-forms methods is available in
 **[DOCS.md](DOCS.md)**.
+
+## Creating Fields
+
+Insert your form and inputs into the DOM, then call `prepare()` on the form Element.
 
 ## License
 
