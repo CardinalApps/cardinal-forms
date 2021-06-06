@@ -25,6 +25,9 @@ on the same form multiple times - it won&#39;t touch fields that are already &qu
 <dt><a href="#prepareCheckboxes">prepareCheckboxes(formEl)</a></dt>
 <dd><p>Wraps all <code>&lt;input type=&quot;checkbox&quot;&gt;</code>&#39;s in <code>.toggle-switch</code>&#39;s. Supports <code>data-label</code> and <code>data-align</code>.</p>
 </dd>
+<dt><a href="#prepareRadios">prepareRadios(formEl)</a></dt>
+<dd><p>Wraps all <code>&lt;input type=&quot;radio&quot;&gt;</code>&#39;s in <code>.radio</code>&#39;s.</p>
+</dd>
 <dt><a href="#prepareFilePickers">prepareFilePickers(formEl)</a></dt>
 <dd><p>Wraps <code>&lt;input type=&quot;file&quot; accept&quot;image/*&quot;&gt;</code> in <code>.photo-input</code>.</p>
 </dd>
@@ -108,6 +111,17 @@ Wraps all `<select>`'s in `.form-select`. Supports `data-label`.
 
 ## prepareCheckboxes(formEl)
 Wraps all `<input type="checkbox">`'s in `.toggle-switch`'s. Supports `data-label` and `data-align`.
+
+**Kind**: global function  
+
+| Param | Type | Description |
+| --- | --- | --- |
+| formEl | <code>Element</code> | Form Element to find fields in. |
+
+<a name="prepareRadios"></a>
+
+## prepareRadios(formEl)
+Wraps all `<input type="radio">`'s in `.radio`'s.
 
 **Kind**: global function  
 
