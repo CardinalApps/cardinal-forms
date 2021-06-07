@@ -9,24 +9,24 @@ import i18n from '../../i18n.js/index.js'
 const validationErrorClassName = 'validation-error'
 
 /**
-* Given any form Element in the document, this will "prepare" every field by adding/wrapping
-* fields with the appropiate markup and attaching event listeners.
-* 
-* - `<select>` gets wrapped in `.form-select`.
-* - `input[type="checkbox"]` gets wrapped in `.toggle-switch`.
-* - `input[type="file"]` with `accept="image/*"` gets wrapped in `.photo-input`.
-* - `input[type="text"]`, `input[type="number"]`, and `textarea` get wrapped in `.text-input`.
-* - `input[type="number"]` gets support for the `maxlength` attr which otherwise only applies to textual inputs, and gets support for `min` and `max` value valudation on blur.
-* - `select[name="genres"]` will automatically be populated with all genres from the database.
-* - Any Element matching `.hidden-fields` will be hidden visually only (**not** display:none), and automatically shown when the form gets the class `show`.
-* - A handler gets attached to the form reset properly resets Electon chosen files and other fields.
-* 
-* This will only effect the Elements that exist in the document at the time it's called, and
-* the form won't be watched for new fields afterwards. However it is safe to call this function
-* on the same form multiple times - it won't touch fields that are already "prepared".
-* 
-* All inputs remain exposed and focusable in their semantic document position.
-*/
+ * Given any form Element in the document, this will "prepare" every field by adding/wrapping
+ * fields with the appropiate markup and attaching event listeners.
+ * 
+ * - `<select>` gets wrapped in `.form-select`.
+ * - `input[type="checkbox"]` gets wrapped in `.toggle-switch`.
+ * - `input[type="file"]` with `accept="image/*"` gets wrapped in `.photo-input`.
+ * - `input[type="text"]`, `input[type="number"]`, and `textarea` get wrapped in `.text-input`.
+ * - `input[type="number"]` gets support for the `maxlength` attr which otherwise only applies to textual inputs, and gets support for `min` and `max` value valudation on blur.
+ * - `select[name="genres"]` will automatically be populated with all genres from the database.
+ * - Any Element matching `.hidden-fields` will be hidden visually only (**not** display:none), and automatically shown when the form gets the class `show`.
+ * - A handler gets attached to the form reset properly resets Electon chosen files and other fields.
+ * 
+ * This will only effect the Elements that exist in the document at the time it's called, and
+ * the form won't be watched for new fields afterwards. However it is safe to call this function
+ * on the same form multiple times - it won't touch fields that are already "prepared".
+ * 
+ * All inputs remain exposed and focusable in their semantic document position.
+ */
 export function prepare(formEl) {
   // child fields
   prepareSelects(formEl)
@@ -46,10 +46,10 @@ export function prepare(formEl) {
 }
 
 /**
-* Wraps all `<select>`'s in `.form-select`. Supports `data-label`.
-* 
-* @param {Element} formEl - Form Element to find fields in.
-*/
+ * Wraps all `<select>`'s in `.form-select`. Supports `data-label`.
+ * 
+ * @param {Element} formEl - Form Element to find fields in.
+ */
 function prepareSelects(formEl) {
   __(formEl).find('select').each((select) => {
     // wrapping might have been done on a previous pass
@@ -70,10 +70,10 @@ function prepareSelects(formEl) {
 }
 
 /**
-* Wraps all `<input type="checkbox">`'s in `.toggle-switch`'s. Supports `data-label` and `data-align`.
-* 
-* @param {Element} formEl - Form Element to find fields in.
-*/
+ * Wraps all `<input type="checkbox">`'s in `.toggle-switch`'s. Supports `data-label` and `data-align`.
+ * 
+ * @param {Element} formEl - Form Element to find fields in.
+ */
 function prepareCheckboxes(formEl) {
   __(formEl).find('input[type="checkbox"]').each((checkbox) => {
     // wrapping might have been done on a previous pass
@@ -108,10 +108,10 @@ function prepareCheckboxes(formEl) {
 }
 
 /**
-* Wraps all `<input type="radio">`'s in `.radio`'s.
-* 
-* @param {Element} formEl - Form Element to find fields in.
-*/
+ * Wraps all `<input type="radio">`'s in `.radio`'s.
+ * 
+ * @param {Element} formEl - Form Element to find fields in.
+ */
 function prepareRadios(formEl) {
   __(formEl).find('input[type="radio"]').each((radioInput) => {
     // wrapping might have been done on a previous pass
@@ -137,10 +137,10 @@ function prepareRadios(formEl) {
 }
 
 /**
-* Wraps `<input type="file" accept"image/*">` in `.photo-input`.
-* 
-* @param {Element} formEl - Form Element to find fields in.
-*/
+ * Wraps `<input type="file" accept"image/*">` in `.photo-input`.
+ * 
+ * @param {Element} formEl - Form Element to find fields in.
+ */
 function prepareFilePickers(formEl) {
   __(formEl).find('input[type="file"]').each((fileEl) => {
     // wrapping might have been done on a previous pass
@@ -219,16 +219,16 @@ function prepareFilePickers(formEl) {
 }
 
 /**
-* Wraps `input`'s with the type `text` or `number`, and `textarea`'s in `.text-input`.
-* 
-* @param {Element} formEl - Form Element to find fields in.
-*/
+ * Wraps `input`'s with the type `text` or `number`, and `textarea`'s in `.text-input`.
+ * 
+ * @param {Element} formEl - Form Element to find fields in.
+ */
 function prepareTextualInputs(formEl) {
   __(formEl).find('input[type="text"], input[type="number"], textarea').each((inputEl) => {
     // wrapping might have been done on a previous pass
     if (__(inputEl).closest('.text-input').els.length) return
 
-    let input = __(inputEl).wrapInto(/*html*/`<label class="text-input field"></label>`).el()
+    let input = __(inputEl).wrapInto(/*html*/`<label class="text-input"></label>`).el()
     let labelText = __(input).attr('data-label')
 
     if (labelText) {
@@ -240,12 +240,12 @@ function prepareTextualInputs(formEl) {
 }
 
 /**
-* Adds functionality to all `<input>`'s with the type `number`.
-*/
+ * Adds functionality to all `<input>`'s with the type `number`.
+ */
 function prepareNumberInputs(formEl) {
   /**
-  * Add maxlength functionality which doesn't exist in the browser
-  */
+ * Add maxlength functionality which doesn't exist in the browser
+ */
   __(formEl).find('input[type="number"][maxlength]').each((el) => {
     el.addEventListener('change', (event) => {
       let userSetValue = parseInt(__(el).value()) // the value that was just set by the user and might be disallowed
@@ -261,8 +261,8 @@ function prepareNumberInputs(formEl) {
   })
 
   /**
-  * On field blur, if the number that the user entered is outside of the min/max, round it to min or max
-  */
+ * On field blur, if the number that the user entered is outside of the min/max, round it to min or max
+ */
   __(formEl).find('input[type="number"][min], input[type="number"][max]').each((el) => {
     el.addEventListener('change', (event) => {
       let userSetValue = parseInt(__(el).value()) // the value that was just set by the user and might be disallowed
@@ -285,13 +285,13 @@ function prepareNumberInputs(formEl) {
 }
 
 /**
-* Hidden fields
-*/
+ * Hidden fields
+ */
 function prepareHiddenFields(formEl) {
   /**
-  * Loop all .hidden-fields elements and disable the tabindex of all child fields. Also add an observer
-  * that reenables the tabindex when the .hidden-fields element is shown.
-  */
+ * Loop all .hidden-fields elements and disable the tabindex of all child fields. Also add an observer
+ * that reenables the tabindex when the .hidden-fields element is shown.
+ */
   __(formEl).find('.hidden-fields').each((parent) => {
     let childElementsSelector = 'input, select, textarea, button, a'
 
@@ -311,8 +311,8 @@ function prepareHiddenFields(formEl) {
 }
 
 /**
-* Attaches an event handler for the form reset.
-*/
+ * Attaches an event handler for the form reset.
+ */
 function formListenForReset(formEl) {
   formEl.addEventListener('reset', (event) => {
     // the reset event will automatically reset the "value" attribute of the file input, but that's not where
@@ -351,9 +351,9 @@ function formListenForReset(formEl) {
 }
 
 /**
-* When the class "success" is added to the form, do an animation, then remove the success class
-* after a few seconds.
-*/
+ * When the class "success" is added to the form, do an animation, then remove the success class
+ * after a few seconds.
+ */
 function formListenForSuccess(formEl) {
   __(formEl).watchAttrs(['class'], (change) => {
     let form = __(formEl)
@@ -379,21 +379,21 @@ function formListenForSuccess(formEl) {
 }
 
 /**
-* Validates all form fields and/or form Elements in the set of matched
-* Elements. Form Elements will have all of their child fields validated.
-*
-* This will automatically add classes and attach event listeners to invalid
-* fields that check for when the field is no longer invalid, and when so,
-* will remove the event handler and classes.
-*
-* It is safe to call validate() over and over (if the user spams the submit
-* button) without creating duplicate handlers.
-*
-* @param {*} selector - Selector for __.
-* @returns {(boolean|null)} Returns true if all fields are valid, or false if
-* any are invalid. Returns null if no fields were found in the DOM, which
-* signifies that no validation was performed.
-*/
+ * Validates all form fields and/or form Elements in the set of matched
+ * Elements. Form Elements will have all of their child fields validated.
+ *
+ * This will automatically add classes and attach event listeners to invalid
+ * fields that check for when the field is no longer invalid, and when so,
+ * will remove the event handler and classes.
+ *
+ * It is safe to call validate() over and over (if the user spams the submit
+ * button) without creating duplicate handlers.
+ *
+ * @param {*} selector - Selector for __.
+ * @returns {(boolean|null)} Returns true if all fields are valid, or false if
+ * any are invalid. Returns null if no fields were found in the DOM, which
+ * signifies that no validation was performed.
+ */
 export function validate(selector) {
   let result = true // will change to false if any field is invalid
   let fieldsToValidate = []
@@ -472,10 +472,10 @@ export function validate(selector) {
   }
 
   /**
-  * This will get attached to text fields that have a validation error. On blur of that field,
-  * this will check if the error should still exist, and if not, it will remove the error class
-  * and self destruct this event listener.
-  */
+ * This will get attached to text fields that have a validation error. On blur of that field,
+ * this will check if the error should still exist, and if not, it will remove the error class
+ * and self destruct this event listener.
+ */
   function validationErrorOnBlurHandler(event) {
     // if not empty anymore, exit error state
     if (__(event.target).value()) {
@@ -488,12 +488,12 @@ export function validate(selector) {
 }
 
 /**
-* Clears all validation classes from a form. This doesn't *need* to be
-* called, because the event listeners automatically created by validate()
-* should handle everything.
-* 
-* @param {*} selector - Selector for __.
-*/
+ * Clears all validation classes from a form. This doesn't *need* to be
+ * called, because the event listeners automatically created by validate()
+ * should handle everything.
+ * 
+ * @param {*} selector - Selector for __.
+ */
 export function clearValidation(selector) {
   __(selector).each((el) => {
     __(el).find(validationErrorClassName).removeClass(validationErrorClassName)
@@ -502,19 +502,19 @@ export function clearValidation(selector) {
 }
 
 /**
-* Returns all values from a form, empty or not. This method expects exactly
-* one form Element in the set of matched Elements.
-*
-* This will also add the following properties to the return object for
-* convienence:
-*
-* - If the fields `date-dd`, `date-mm`, `date-yyyy` all exist in the form and
-*   are not empty, their values will be used to add these new properties:
-*   `date-ms` and `date-dd-mm-yyyy`.
-*
-* @returns {object} Returns an object where keys are the field names and the
-* values are the field values.
-*/
+ * Returns all values from a form, empty or not. This method expects exactly
+ * one form Element in the set of matched Elements.
+ *
+ * This will also add the following properties to the return object for
+ * convienence:
+ *
+ * - If the fields `date-dd`, `date-mm`, `date-yyyy` all exist in the form and
+ *   are not empty, their values will be used to add these new properties:
+ *   `date-ms` and `date-dd-mm-yyyy`.
+ *
+ * @returns {object} Returns an object where keys are the field names and the
+ * values are the field values.
+ */
 export function getValues(formEl) {
   let values = {}
 
