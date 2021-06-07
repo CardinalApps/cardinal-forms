@@ -124,7 +124,7 @@ function prepareRadios(formEl) {
 
     let html = /*html*/`
       <div class="field radio-field">
-        <label ${color}></label>
+        <label class="clicks" ${color}></label>
         <span class="label-text">${label}</span>
       </div>`
 
